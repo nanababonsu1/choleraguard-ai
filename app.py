@@ -244,6 +244,30 @@ st.dataframe(
     regional_data[["Region", "Predicted_Cases", "Status"]],
     use_container_width=True
 )
+st.subheader("📥 Export Surveillance Data")
+
+csv = regional_data.to_csv(index=False)
+
+st.download_button(
+    label="Download Surveillance Report (CSV)",
+    data=csv,
+    file_name="cholera_surveillance_report.csv",
+    mime="text/csv"
+)
+st.subheader("📈 Monthly Cholera Trend")
+
+fig2, ax2 = plt.subplots(figsize=(10,5))
+
+ax2.plot(
+    monthly_data["Month"],
+    monthly_data["Cholera_Cases"],
+    marker="o"
+)
+
+ax2.set_title("Monthly Cholera Cases")
+ax2.set_ylabel("Cases")
+
+st.pyplot(fig2)
 st.header("📊 National Cholera Surveillance Dashboard")
 
 
