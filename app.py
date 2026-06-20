@@ -284,19 +284,7 @@ st.dataframe(
 )
 st.divider()
 
-st.subheader("🏙 Top 10 High-Risk Districts")
 
-district_data["Risk_Score"] = range(len(district_data), 0, -1)
-
-top_districts = district_data.sort_values(
-    "Risk_Score",
-    ascending=False
-).head(10)
-
-st.dataframe(
-    top_districts[["District", "Region", "Risk_Score"]],
-    use_container_width=True
-)
 st.subheader("📥 Export Surveillance Data")
 
 csv = regional_data.to_csv(index=False)
