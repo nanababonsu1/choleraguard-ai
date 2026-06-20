@@ -181,7 +181,34 @@ fig_map.update_layout(
 )
 
 st.plotly_chart(fig_map, use_container_width=True)
+st.divider()
 
+st.subheader("🔥 Top 5 High-Risk Regions")
+
+top5 = regional_data.sort_values(
+    "Predicted_Cases",
+    ascending=False
+).head(5)
+
+st.dataframe(
+    top5[["Region", "Predicted_Cases"]],
+    use_container_width=True
+)
+
+st.subheader("🚨 Regional Alert Status")
+
+regional_data["Status"] = regional_data["Predicted_Cases"].apply(
+    lambda x: "OUTBREAK ALERT"
+    if x > 30000
+    else "WATCHLIST"
+    if x > 20000
+    else "NORMAL"
+)
+
+st.dataframe(
+    regional_data[["Region", "Predicted_Cases", "Status"]],
+    use_container_width=True
+)
 st.header("📊 National Cholera Surveillance Dashboard")
 
 
