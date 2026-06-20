@@ -268,6 +268,17 @@ ax2.set_title("Monthly Cholera Cases")
 ax2.set_ylabel("Cases")
 
 st.pyplot(fig2)
+
+st.divider()
+
+st.subheader("🚦 National Cholera Risk Gauge")
+
+if high_risk >= 5:
+    st.error("🔴 OUTBREAK RISK - Immediate Response Required")
+elif high_risk >= 3:
+    st.warning("🟡 WATCHLIST - Enhanced Surveillance Recommended")
+else:
+    st.success("🟢 NORMAL - Situation Stable")
 st.header("📊 National Cholera Surveillance Dashboard")
 
 
