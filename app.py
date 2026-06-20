@@ -286,7 +286,7 @@ st.divider()
 
 st.subheader("🏙 Top 10 High-Risk Districts")
 
-district_data["Risk_Score"] = district_data["Rainfall_mm"] * 150
+district_data["Risk_Score"] = district_data["Population_Density"] * 10
 
 top_districts = district_data.sort_values(
     "Risk_Score",
