@@ -315,6 +315,36 @@ ax2.set_ylabel("Cases")
 st.pyplot(fig2)
 
 st.divider()
+st.subheader("🔮 3-Month Cholera Forecast")
+
+recent_cases = monthly_data["Cholera_Cases"].tail(3).mean()
+
+forecast_months = ["Next Month", "Month 2", "Month 3"]
+forecast_cases = [
+    recent_cases * 1.10,
+    recent_cases * 1.20,
+    recent_cases * 1.30
+]
+
+forecast_df = pd.DataFrame({
+    "Forecast Period": forecast_months,
+    "Predicted Cases": [round(x, 1) for x in forecast_cases]
+})
+
+st.dataframe(forecast_df, use_container_width=True)
+
+fig_forecast, ax_forecast = plt.subplots(figsize=(10, 5))
+
+ax_forecast.plot(
+    forecast_df["Forecast Period"],
+    forecast_df["Predicted Cases"],
+    marker="o"
+)
+
+ax_forecast.set_title("Projected Cholera Cases for Next 3 Months")
+ax_forecast.set_ylabel("Predicted Cases")
+
+st.pyplot(fig_forecast)
 
 st.subheader("🚦 National Cholera Risk Gauge")
 
