@@ -248,11 +248,14 @@ st.dataframe(
 st.subheader("🚨 Regional Alert Status")
 
 regional_data["Status"] = regional_data["Predicted_Cases"].apply(
-    lambda x: "OUTBREAK ALERT"
-    if x > 30000
-    else "WATCHLIST"
-    if x > 20000
-    else "NORMAL"
+    lambda x:
+    "🔴 OUTBREAK"
+    if x >= 30000 else
+    "🟠 HIGH RISK"
+    if x >= 20000 else
+    "🟡 ALERT"
+    if x >= 10000 else
+    "🟢 NORMAL"
 )
 
 st.dataframe(
