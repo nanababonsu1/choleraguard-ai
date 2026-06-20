@@ -150,8 +150,32 @@ col3.metric("Risk Level", risk)
 col4.metric("Model Type", "Random Forest")
 
 st.divider()
+regional_data["Predicted_Cases"] = regional_data["Rainfall_mm"] * 180
+st.subheader("🗺️ Ghana Cholera Risk Map")
+
+fig_map = px.scatter_mapbox(
+    regional_data,
+    lat="Latitude",
+    lon="Longitude",
+    hover_name="Region",
+    hover_data=["Predicted_Cases"],
+    size="Predicted_Cases",
+    color="Predicted_Cases",
+    color_continuous_scale="Reds",
+    zoom=5,
+    center={"lat": 7.9465, "lon": -1.0232},
+    height=600
+)
+
+fig_map.update_layout(
+    mapbox_style="open-street-map",
+    margin={"r":0,"t":0,"l":0,"b":0}
+)
+
+st.plotly_chart(fig_map, use_container_width=True)
 
 st.header("📊 National Cholera Surveillance Dashboard")
+
 
 top_regions = regional_data.sort_values("Predicted_Cases", ascending=False)
 
