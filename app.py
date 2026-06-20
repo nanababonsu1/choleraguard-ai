@@ -22,7 +22,12 @@ This platform uses Artificial Intelligence and Machine Learning to predict chole
 # ---------------------------
 # DATA
 # ---------------------------
+st.header("🌧 Rainfall Data Source")
 
+rainfall_source = st.selectbox(
+    "Choose Rainfall Source",
+    ["Historical Ghana Dataset", "Manual Entry"]
+)
 monthly_data = pd.DataFrame({
     "Month": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
     "Rainfall_mm": [30.27,31.73,152.81,216.25,191.41,221.95,257.42,68.67,142.59,166.92,174.68,22.69],
@@ -125,12 +130,21 @@ region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 selected = regional_data[regional_data["Region"] == region].iloc[0]
 
 rainfall = st.sidebar.slider("Rainfall (mm)", 0, 300, int(selected["Rainfall_mm"]))
+if rainfall_source == "Manual Entry":
+    rainfall_input = st.number_input(
+        "Enter Current Rainfall (mm)",
+        min_value=0.0,
+        max_value=1000.0,
+        value=220.0
+    )
+else:
+    rainfall_input = rainfall
 water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
 sanitation = st.sidebar.slider("Sanitation Coverage (%)", 0, 100, int(selected["Sanitation"]))
 population_density = st.sidebar.slider("Population Density", 100, 6000, int(selected["Population_Density"]))
 
 input_df = pd.DataFrame({
-    "Rainfall_mm": [rainfall],
+    "Rainfall_mm": [rainfall_input],
     "Water_Access": [water_access],
     "Sanitation": [sanitation],
     "Population_Density": [population_density]
