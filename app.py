@@ -151,6 +151,14 @@ col4.metric("Model Type", "Random Forest")
 
 st.divider()
 regional_data["Predicted_Cases"] = regional_data["Rainfall_mm"] * 180
+total_cases = regional_data["Predicted_Cases"].sum()
+high_risk = len(regional_data[regional_data["Predicted_Cases"] > 25000])
+
+colA, colB, colC = st.columns(3)
+
+colA.metric("Total Predicted Cases", f"{int(total_cases):,}")
+colB.metric("Regions Monitored", "16")
+colC.metric("High Risk Regions", high_risk)
 st.subheader("🗺️ Ghana Cholera Risk Map")
 
 fig_map = px.scatter_mapbox(
