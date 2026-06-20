@@ -10,8 +10,8 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🦠 CholeraGuard AI")
-st.subheader("AI-Powered Cholera Early Warning System for Ghana")
+st.title("🇬🇭 CholeraGuard AI: Ghana 16-Region Early Warning System")
+st.subheader("AI-Powered Cholera Surveillance and Outbreak Prediction Platform for all 16 Regions of Ghana")
 
 st.write("""
 This platform uses Artificial Intelligence and Machine Learning to predict cholera outbreak risk using rainfall, water access, sanitation, and population density indicators.
@@ -31,11 +31,41 @@ monthly_data = pd.DataFrame({
 })
 
 regional_data = pd.DataFrame({
-    "Region": ["Greater Accra","Ashanti","Central","Eastern","Western","Volta","Northern","Upper East","Upper West","Bono"],
-    "Rainfall_mm": [220,210,165,150,140,130,90,85,80,78],
-    "Water_Access": [82,80,78,76,77,75,70,68,67,69],
-    "Sanitation": [35,34,30,29,28,27,22,21,20,21],
-    "Population_Density": [5000,4200,2600,2400,2100,1800,1200,900,800,850]
+    "Region": [
+        "Greater Accra",
+        "Ashanti",
+        "Central",
+        "Eastern",
+        "Western",
+        "Western North",
+        "Volta",
+        "Oti",
+        "Northern",
+        "Savannah",
+        "North East",
+        "Upper East",
+        "Upper West",
+        "Bono",
+        "Bono East",
+        "Ahafo"
+    ],
+    "Rainfall_mm": [
+        220, 210, 165, 150, 140, 135, 130, 125,
+        90, 88, 86, 85, 80, 78, 82, 95
+    ],
+    "Water_Access": [
+        82, 80, 78, 76, 77, 74, 75, 73,
+        70, 69, 68, 68, 67, 69, 70, 72
+    ],
+    "Sanitation": [
+        35, 34, 30, 29, 28, 26, 27, 25,
+        22, 21, 20, 21, 20, 21, 22, 24
+    ],
+    "Population_Density": [
+        5000, 4200, 2600, 2400, 2100, 1500, 1800, 1300,
+        1200, 900, 850, 900, 800, 850, 950, 1000
+    ]
+})
 })
 
 X = monthly_data[["Rainfall_mm","Water_Access","Sanitation","Population_Density"]]
