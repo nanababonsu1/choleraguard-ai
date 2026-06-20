@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
+import plotly.graph_objects as go
 from sklearn.ensemble import RandomForestRegressor
 from fpdf import FPDF
 
@@ -152,6 +153,7 @@ input_df = pd.DataFrame({
 
 prediction = model.predict(input_df)[0]
 risk = risk_level(prediction)
+gauge_value = min(prediction, 40000)
 
 # ---------------------------
 # DASHBOARD
@@ -163,7 +165,25 @@ col1.metric("Selected Region", region)
 col2.metric("Predicted Cases", round(prediction, 1))
 col3.metric("Risk Level", risk)
 col4.metric("Model Type", "Random Forest")
+st.subheader("🎯 Cholera Risk Gauge")
 
+fig_gauge = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=gauge_value,
+    title={"text": "Outbreak Risk Score"},
+    gauge={
+        "axis": {"range": [0, 40000]},
+        "bar": {"color": "red"},
+        "steps": [
+            {"range": [0, 10000], "color": "lightgreen"},
+            {"range": [10000, 20000], "color": "yellow"},
+            {"range": [20000, 30000], "color": "orange"},
+            {"range": [30000, 40000], "color": "red"}
+        ]
+    }
+))
+
+st.plotly_chart(fig_gauge, use_container_width=True)
 st.divider()
 regional_data["Predicted_Cases"] = regional_data["Rainfall_mm"] * 180
 total_cases = regional_data["Predicted_Cases"].sum()
