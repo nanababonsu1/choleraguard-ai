@@ -11,8 +11,8 @@ st.set_page_config(
     layout="wide"
 )
 
-st.title("🇬🇭 CholeraGuard AI: Ghana 16-Region Early Warning System")
-st.subheader("AI-Powered Cholera Surveillance and Outbreak Prediction Platform for all 16 Regions of Ghana")
+st.title("🇬🇭 CholeraGuard AI: Ghana National Cholera Surveillance Dashboard")
+st.subheader("AI-Powered Cholera Early Warning and Outbreak Prediction System for all 16 Regions of Ghana")
 
 st.write("""
 This platform uses Artificial Intelligence and Machine Learning to predict cholera outbreak risk using rainfall, water access, sanitation, and population density indicators.
