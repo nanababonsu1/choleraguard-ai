@@ -32,22 +32,10 @@ monthly_data = pd.DataFrame({
 
 regional_data = pd.DataFrame({
     "Region": [
-        "Greater Accra",
-        "Ashanti",
-        "Central",
-        "Eastern",
-        "Western",
-        "Western North",
-        "Volta",
-        "Oti",
-        "Northern",
-        "Savannah",
-        "North East",
-        "Upper East",
-        "Upper West",
-        "Bono",
-        "Bono East",
-        "Ahafo"
+        "Greater Accra", "Ashanti", "Central", "Eastern",
+        "Western", "Western North", "Volta", "Oti",
+        "Northern", "Savannah", "North East", "Upper East",
+        "Upper West", "Bono", "Bono East", "Ahafo"
     ],
     "Rainfall_mm": [
         220, 210, 165, 150, 140, 135, 130, 125,
@@ -64,8 +52,19 @@ regional_data = pd.DataFrame({
     "Population_Density": [
         5000, 4200, 2600, 2400, 2100, 1500, 1800, 1300,
         1200, 900, 850, 900, 800, 850, 950, 1000
+    ],
+    "Latitude": [
+        5.6037, 6.6885, 5.5608, 6.0941,
+        4.8960, 6.0215, 6.5781, 7.9000,
+        9.4008, 9.0830, 10.5167, 10.7856,
+        10.2992, 7.9559, 7.7500, 6.8630
+    ],
+    "Longitude": [
+        -0.1870, -1.6244, -1.0586, -0.2591,
+        -1.7590, -2.6542, 0.4502, 0.3000,
+        -0.8393, -1.8189, -0.3667, -0.8514,
+        -2.1450, -2.4900, -1.0500, -2.3170
     ]
-})
 })
 
 X = monthly_data[["Rainfall_mm","Water_Access","Sanitation","Population_Density"]]
