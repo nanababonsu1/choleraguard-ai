@@ -159,6 +159,41 @@ colA, colB, colC = st.columns(3)
 colA.metric("Total Predicted Cases", f"{int(total_cases):,}")
 colB.metric("Regions Monitored", "16")
 colC.metric("High Risk Regions", high_risk)
+st.divider()
+
+if high_risk >= 5:
+    st.error(f"🔴 NATIONAL CHOLERA WATCH: {high_risk} regions currently exceed outbreak-risk thresholds.")
+elif high_risk >= 2:
+    st.warning(f"🟡 ELEVATED CHOLERA RISK: {high_risk} regions require enhanced surveillance.")
+else:
+    st.success("🟢 NATIONAL STATUS STABLE: No major outbreak-risk concentration detected.")
+
+st.subheader("🤖 AI Public Health Recommendations")
+
+if high_risk >= 5:
+    st.markdown("""
+    **Recommended Actions**
+    - Activate national cholera preparedness protocols.
+    - Prioritize Greater Accra, Ashanti, Central, Eastern, and Western regions.
+    - Increase water-quality testing and WASH surveillance.
+    - Pre-position ORS, IV fluids, antibiotics, and rapid response teams.
+    - Intensify public education on safe water, handwashing, and sanitation.
+    """)
+elif high_risk >= 2:
+    st.markdown("""
+    **Recommended Actions**
+    - Strengthen regional surveillance in watchlist areas.
+    - Monitor rainfall trends and water contamination signals.
+    - Prepare district response teams.
+    - Begin targeted community WASH messaging.
+    """)
+else:
+    st.markdown("""
+    **Recommended Actions**
+    - Continue routine cholera surveillance.
+    - Maintain community WASH education.
+    - Monitor rainfall and sanitation trends.
+    """)
 st.subheader("🗺️ Ghana Cholera Risk Map")
 
 fig_map = px.scatter_mapbox(
