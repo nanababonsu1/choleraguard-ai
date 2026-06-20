@@ -99,6 +99,79 @@ regional_data = pd.DataFrame({
 -0.9000
 ]
 })
+district_data = pd.DataFrame({
+    "District": [
+        "Accra Metropolitan", "Tema Metropolitan", "Ga East", "Ga West", "La Dade-Kotopon",
+        "Kumasi Metropolitan", "Obuasi Municipal", "Ejisu", "Asokore Mampong", "Bekwai",
+        "Cape Coast Metropolitan", "Komenda Edina Eguafo Abirem", "Awutu Senya East",
+        "Sekondi-Takoradi Metropolitan", "Tarkwa-Nsuaem",
+        "Koforidua", "New Juaben South", "Akwapim South",
+        "Ho Municipal", "Keta Municipal",
+        "Tamale Metropolitan", "Sagnarigu", "Savelugu",
+        "Sunyani Municipal", "Techiman Municipal",
+        "Wa Municipal", "Bolgatanga Municipal", "Bawku Municipal", "Nalerigu-Gambaga", "Dambai"
+    ],
+
+    "Region": [
+        "Greater Accra", "Greater Accra", "Greater Accra", "Greater Accra", "Greater Accra",
+        "Ashanti", "Ashanti", "Ashanti", "Ashanti", "Ashanti",
+        "Central", "Central", "Central",
+        "Western", "Western",
+        "Eastern", "Eastern", "Eastern",
+        "Volta", "Volta",
+        "Northern", "Northern", "Northern",
+        "Bono", "Bono",
+        "Upper West", "Upper East", "Upper East", "North East", "Oti"
+    ],
+
+    "Rainfall_mm": [
+        220, 210, 205, 195, 200,
+        180, 160, 170, 155, 150,
+        140, 135, 130,
+        125, 120,
+        165, 150, 145,
+        130, 120,
+        90, 88, 85,
+        80, 78,
+        82, 95, 90, 86, 85
+    ],
+
+    "Water_Access": [
+        82, 80, 78, 76, 77,
+        74, 75, 73, 72, 70,
+        69, 68, 66,
+        67, 69,
+        70, 72, 71,
+        68, 67,
+        61, 60, 59,
+        66, 65,
+        63, 58, 57, 56, 60
+    ],
+
+    "Sanitation": [
+        35, 34, 30, 29, 28,
+        26, 27, 25, 22, 21,
+        20, 21, 22,
+        24, 23,
+        28, 27, 26,
+        25, 24,
+        22, 21, 20,
+        21, 22,
+        20, 21, 19, 18, 25
+    ],
+
+    "Population_Density": [
+        6500, 5800, 4500, 4200, 5000,
+        6000, 3500, 3000, 4200, 2800,
+        3000, 2600, 3200,
+        2800, 2300,
+        2400, 2200, 2000,
+        1800, 1600,
+        1500, 1300, 1100,
+        1000, 1200,
+        800, 900, 850, 750, 1300
+    ]
+})
 
 X = monthly_data[["Rainfall_mm","Water_Access","Sanitation","Population_Density"]]
 y = monthly_data["Cholera_Cases"]
@@ -284,7 +357,26 @@ st.dataframe(
 )
 st.divider()
 
+st.divider()
 
+st.subheader("🏙 Top 10 High-Risk Districts")
+
+district_data["Risk_Score"] = (
+    district_data["Rainfall_mm"] * 100
+    + district_data["Population_Density"] * 2
+    - district_data["Water_Access"] * 50
+    - district_data["Sanitation"] * 40
+)
+
+top_districts = district_data.sort_values(
+    "Risk_Score",
+    ascending=False
+).head(10)
+
+st.dataframe(
+    top_districts[["District", "Region", "Risk_Score"]],
+    use_container_width=True
+)
 st.subheader("📥 Export Surveillance Data")
 
 csv = regional_data.to_csv(index=False)
