@@ -4,6 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
 from sklearn.ensemble import RandomForestRegressor
+from fpdf import FPDF
 
 st.set_page_config(
     page_title="CholeraGuard AI",
@@ -253,6 +254,49 @@ st.download_button(
     data=csv,
     file_name="cholera_surveillance_report.csv",
     mime="text/csv"
+)
+def create_pdf_report():
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", "B", 16)
+    pdf.cell(0, 10, "CholeraGuard AI Surveillance Report", ln=True)
+
+    pdf.set_font("Arial", "", 12)
+    pdf.cell(0, 10, f"Regions Monitored: 16", ln=True)
+    pdf.cell(0, 10, f"Total Predicted Cases: {int(total_cases):,}", ln=True)
+    pdf.cell(0, 10, f"High Risk Regions: {high_risk}", ln=True)
+
+    pdf.ln(8)
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 10, "Top 5 High-Risk Regions", ln=True)
+
+    pdf.set_font("Arial", "", 11)
+    for _, row in top5.iterrows():
+        pdf.cell(0, 8, f"{row['Region']}: {int(row['Predicted_Cases']):,} predicted cases", ln=True)
+
+    pdf.ln(8)
+    pdf.set_font("Arial", "B", 12)
+    pdf.cell(0, 10, "Public Health Recommendation", ln=True)
+
+    pdf.set_font("Arial", "", 11)
+    if high_risk >= 5:
+        recommendation = "Activate national cholera preparedness protocols and prioritize high-risk regions."
+    elif high_risk >= 2:
+        recommendation = "Strengthen regional surveillance and prepare district response teams."
+    else:
+        recommendation = "Continue routine cholera surveillance and WASH education."
+
+    pdf.multi_cell(0, 8, recommendation)
+
+    return bytes(pdf.output(dest="S"))
+
+pdf_report = create_pdf_report()
+
+st.download_button(
+    label="Download Surveillance Report (PDF)",
+    data=pdf_report,
+    file_name="cholera_surveillance_report.pdf",
+    mime="application/pdf"
 )
 st.subheader("📈 Monthly Cholera Trend")
 
