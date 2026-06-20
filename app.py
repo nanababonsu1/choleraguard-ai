@@ -288,7 +288,7 @@ def create_pdf_report():
 
     pdf.multi_cell(0, 8, recommendation)
 
-    return bytes(pdf.output(dest="S"))
+return pdf.output(dest="S").encode("latin-1")
 
 pdf_report = create_pdf_report()
 
