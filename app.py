@@ -464,7 +464,7 @@ def create_pdf_report():
 
     pdf.multi_cell(0, 8, recommendation)
     pdf_string = pdf.output(dest="S")
-return pdf_string.encode("latin-1") if isinstance(pdf_string, str) else bytes(pdf_string)
+    return pdf_string.encode("latin-1") if isinstance(pdf_string, str) else bytes(pdf_string)
 pdf_report = create_pdf_report()
 
 st.download_button(
