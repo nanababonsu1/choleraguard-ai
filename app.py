@@ -206,18 +206,17 @@ regional_data["Predicted_Cases"] = model.predict(
 )
 
 def risk_level(cases):
-    if cases >= 60:
-        return "🔴 OUTBREAK ALERT"
-    elif cases >= 30:
-        return "🟡 WATCHLIST"
+    if cases >= 100:
+        return "🔴 OUTBREAK"
+    elif cases >= 50:
+        return "🟠 HIGH RISK"
+    elif cases >= 20:
+        return "🟡 ALERT"
     else:
-        return "🟢 STABLE"
+        return "🟢 NORMAL"
 
 regional_data["Risk_Level"] = regional_data["Predicted_Cases"].apply(risk_level)
-
-# ---------------------------
-# SIDEBAR
-# ---------------------------
+regional_data["WHO_Status"] = regional_data["Predicted_Cases"].apply(risk_level)
 
 st.sidebar.header("Run a Regional Prediction")
 
@@ -277,7 +276,38 @@ fig_gauge = go.Figure(go.Indicator(
         ]
     }
 ))
+outbreak_regions = len(
+    regional_data[
+        regional_data["Predicted_Cases"] >= 100
+    ]
+)
 
+high_risk_regions = len(
+    regional_data[
+        regional_data["Predicted_Cases"] >= 50
+    ]
+)
+
+alert_regions = len(
+    regional_data[
+        regional_data["Predicted_Cases"] >= 20
+    ]
+)
+
+st.metric(
+    "National Outbreak Regions",
+    outbreak_regions
+)
+
+st.metric(
+    "High Risk Regions",
+    high_risk_regions
+)
+
+st.metric(
+    "Alert Regions",
+    alert_regions
+)
 st.plotly_chart(fig_gauge, use_container_width=True)
 st.divider()
 regional_data["Predicted_Cases"] = regional_data["Rainfall_mm"] * 180
@@ -374,7 +404,9 @@ regional_data["Status"] = regional_data["Predicted_Cases"].apply(
 )
 
 st.dataframe(
-    regional_data[["Region", "Predicted_Cases", "Status"]],
+    regional_data[
+        ["Region","Predicted_Cases","Risk_Level","WHO_Status"]
+    ],
     use_container_width=True
 )
 st.divider()
