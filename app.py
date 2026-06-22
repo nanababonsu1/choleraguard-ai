@@ -230,7 +230,6 @@ rainfall = st.sidebar.slider(
     300,
     int(selected["Rainfall_mm"])
 )
-
 rainfall_scenario = st.sidebar.selectbox(
     "Rainfall Scenario",
     [
@@ -238,7 +237,7 @@ rainfall_scenario = st.sidebar.selectbox(
         "Low Rainfall Scenario",
         "Moderate Rainfall Scenario",
         "Heavy Rainfall Scenario",
-        "Extreme Flooding Scenario"
+        "Extreme Flooding Scenario",
     ]
 )
 if rainfall_scenario == "Low Rainfall Scenario":
