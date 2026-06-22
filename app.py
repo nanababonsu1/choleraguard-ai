@@ -434,6 +434,7 @@ st.download_button(
 def create_pdf_report():
     pdf = FPDF()
     pdf.add_page()
+
     pdf.set_font("Arial", "B", 16)
     pdf.cell(0, 10, "CholeraGuard AI Surveillance Report", ln=True)
 
@@ -444,30 +445,20 @@ def create_pdf_report():
 
     pdf.ln(8)
     pdf.set_font("Arial", "B", 12)
-    pdf.cell(0, 10, "Top 5 High-Risk Regions", ln=True)
-
-    pdf.set_font("Arial", "", 11)
-    for _, row in top5.iterrows():
-        pdf.cell(0, 8, f"{row['Region']}: {int(row['Predicted_Cases']):,} predicted cases", ln=True)
-
-    pdf.ln(8)
-    pdf.set_font("Arial", "B", 12)
     pdf.cell(0, 10, "Public Health Recommendation", ln=True)
 
     pdf.set_font("Arial", "", 11)
-    if high_risk >= 5:
-        recommendation = "Activate national cholera preparedness protocols and prioritize high-risk regions."
-    elif high_risk >= 2:
-        recommendation = "Strengthen regional surveillance and prepare district response teams."
-    else:
-        recommendation = "Continue routine cholera surveillance and WASH education."
+    recommendation = "Continue routine cholera surveillance and WASH education."
+    pdf.multi_cell(0, 8, recommendation)
 
-       pdf.multi_cell(0, 8, recommendation)
+    pdf_output = pdf.output(dest="S")
 
-       pdf_string = pdf.output(dest="S")
-       return pdf_string.encode("latin-1") if isinstance(pdf_string, str) else bytes(pdf_string)
+    if isinstance(pdf_output, str):
+        return pdf_output.encode("latin-1")
+    return bytes(pdf_output)
 
-   pdf_report = create_pdf_report()
+
+pdf_report = create_pdf_report()
 
 st.download_button(
     label="Download Surveillance Report (PDF)",
