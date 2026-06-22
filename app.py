@@ -234,7 +234,6 @@ rainfall_scenario = st.sidebar.selectbox(
         "Heavy Rainfall Scenario",
         "Extreme Flooding Scenario"
     ]
-
 rainfall_scenario = st.selectbox(
     "Select Rainfall Scenario",
     [
