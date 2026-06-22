@@ -225,6 +225,27 @@ region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 selected = regional_data[regional_data["Region"] == region].iloc[0]
 
 rainfall = st.sidebar.slider("Rainfall (mm)", 0, 300, int(selected["Rainfall_mm"]))
+rainfall_scenario = st.sidebar.selectbox(
+    "Rainfall Scenario",
+    [
+        "Use Selected Region Rainfall",
+        "Low Rainfall Scenario",
+        "Moderate Rainfall Scenario",
+        "Heavy Rainfall Scenario",
+        "Extreme Flooding Scenario"
+    ]
+)
+
+if rainfall_scenario == "Low Rainfall Scenario":
+    rainfall_input = 50
+elif rainfall_scenario == "Moderate Rainfall Scenario":
+    rainfall_input = 120
+elif rainfall_scenario == "Heavy Rainfall Scenario":
+    rainfall_input = 220
+elif rainfall_scenario == "Extreme Flooding Scenario":
+    rainfall_input = 300
+else:
+    rainfall_input = rainfall
 if rainfall_source == "Manual Entry":
     rainfall_input = st.number_input(
         "Enter Current Rainfall (mm)",
