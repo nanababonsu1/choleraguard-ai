@@ -246,12 +246,7 @@ elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
 else:
     rainfall_input = rainfall
-if rainfall_scenario == "Manual Entry":
-    rainfall_input = st.number_input(
-        "Enter Current Rainfall (mm)",
-        min_value=0.0,
-        max_value=1000.0,
-        value=220.0
+
     )
 else:
     rainfall_input = rainfall
