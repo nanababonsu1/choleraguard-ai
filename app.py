@@ -291,13 +291,13 @@ fig_gauge = go.Figure(go.Indicator(
     value=gauge_value,
     title={"text": "Outbreak Risk Score"},
     gauge={
-        "axis": {"range": [0, 40000]},
+        "axis": {"range": [0, 120]},
         "bar": {"color": "red"},
         "steps": [
-            {"range": [0, 10000], "color": "lightgreen"},
-            {"range": [10000, 20000], "color": "yellow"},
-            {"range": [20000, 30000], "color": "orange"},
-            {"range": [30000, 40000], "color": "red"}
+            {"range": [0, 20], "color": "lightgreen"},
+            {"range": [20, 50], "color": "yellow"},
+            {"range": [50, 100], "color": "orange"},
+            {"range": [100, 120], "color": "red"}
         ]
     }
 ))
