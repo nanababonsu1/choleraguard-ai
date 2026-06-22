@@ -235,7 +235,15 @@ rainfall_scenario = st.sidebar.selectbox(
         "Extreme Flooding Scenario"
     ]
 
-
+rainfall_scenario = st.selectbox(
+    "Select Rainfall Scenario",
+    [
+        "Low Rainfall Scenario",
+        "Moderate Rainfall Scenario",
+        "Heavy Rainfall Scenario",
+        "Extreme Flooding Scenario"
+    ]
+)
 if rainfall_scenario == "Low Rainfall Scenario":
     rainfall_input = 50
 elif rainfall_scenario == "Moderate Rainfall Scenario":
