@@ -250,7 +250,6 @@ elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
 else:
     rainfall_input = rainfall
-    )
 else:
     rainfall_input = rainfall
 water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
