@@ -267,6 +267,10 @@ input_df = pd.DataFrame({
 })
 
 prediction = model.predict(input_df)[0]
+st.write("Rainfall Used:", rainfall_input)
+st.write("Water Access Used:", water_access)
+st.write("Sanitation Used:", sanitation)
+st.write("Population Density Used:", population_density)
 risk = risk_level(prediction)
 gauge_value = min(prediction, 40000)
 
