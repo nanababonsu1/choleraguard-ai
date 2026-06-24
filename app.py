@@ -403,7 +403,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     st.metric(
         "Total Predicted Cases",
-        int(region_data["Predicted_Cases"].sum())
+        int(regional_data["Predicted_Cases"].sum())
     )
 
 with col2:
