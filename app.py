@@ -407,13 +407,12 @@ with col1:
     )
 
 with col2:
-    st.metric(
-        "Highest Risk Region",
-        region_data.loc[
-            region_data["Predicted_Cases"].idxmax(),
-            "Region"
-        ]
-    )
+    highest_region = regional_data.sort_values(
+        "Predicted_Cases",
+        ascending=False
+    ).iloc[0]["Region"]
+
+    st.metric("Highest Risk Region", highest_region)
 
 with col3:
     st.metric(
