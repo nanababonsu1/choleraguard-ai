@@ -396,6 +396,30 @@ fig_map.update_layout(
 )
 
 st.plotly_chart(fig_map, use_container_width=True)
+st.subheader("📊 National Summary Statistics")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "Total Predicted Cases",
+        int(region_data["Predicted_Cases"].sum())
+    )
+
+with col2:
+    st.metric(
+        "Highest Risk Region",
+        region_data.loc[
+            region_data["Predicted_Cases"].idxmax(),
+            "Region"
+        ]
+    )
+
+with col3:
+    st.metric(
+        "Average Regional Risk",
+        round(region_data["Predicted_Cases"].mean(), 1)
+    )
 st.divider()
 
 st.subheader("🔥 Top 5 High-Risk Regions")
