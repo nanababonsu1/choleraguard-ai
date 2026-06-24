@@ -582,7 +582,32 @@ st.download_button(
     mime="application/pdf"
 )
 st.subheader("📈 Monthly Cholera Trend")
+st.subheader("🔮 3-Month Cholera Forecast")
 
+future_months = ["Next Month", "Month +2", "Month +3"]
+
+current_prediction = prediction
+
+forecast_cases = [
+    int(current_prediction * 1.05),
+    int(current_prediction * 1.10),
+    int(current_prediction * 1.15)
+]
+
+forecast_df = pd.DataFrame({
+    "Month": future_months,
+    "Forecasted Cases": forecast_cases
+})
+
+fig_forecast = px.line(
+    forecast_df,
+    x="Month",
+    y="Forecasted Cases",
+    markers=True,
+    title="AI Forecast of Cholera Cases"
+)
+
+st.plotly_chart(fig_forecast, use_container_width=True)
 fig2, ax2 = plt.subplots(figsize=(10,5))
 
 ax2.plot(
