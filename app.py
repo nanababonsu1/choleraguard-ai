@@ -417,7 +417,7 @@ with col2:
 with col3:
     st.metric(
         "Average Regional Risk",
-        round(region_data["Predicted_Cases"].mean(), 1)
+        round(regional_data["Predicted_Cases"].mean(), 1)
     )
 st.divider()
 
