@@ -396,6 +396,35 @@ fig_map.update_layout(
 )
 
 st.plotly_chart(fig_map, use_container_width=True)
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.metric(
+        "Regions at High Risk",
+        len(regional_data[regional_data["Predicted_Cases"] > 20000])
+    )
+
+with col2:
+    st.metric(
+        "Average Risk",
+        round(regional_data["Predicted_Cases"].mean(),0)
+    )
+
+with col3:
+    st.metric(
+        "Highest Risk Region",
+        regional_data.sort_values(
+            "Predicted_Cases",
+            ascending=False
+        ).iloc[0]["Region"]
+    )
+
+with col4:
+    st.metric(
+        "Total Regions",
+        len(regional_data)
+    )
+
 st.subheader("📊 National Summary Statistics")
 
 col1, col2, col3 = st.columns(3)
@@ -419,6 +448,17 @@ with col3:
         "Average Regional Risk",
         round(regional_data["Predicted_Cases"].mean(), 1)
     )
+
+st.subheader("🚨 National Cholera Alert Status")
+
+if regional_data["Predicted_Cases"].max() >= 30000:
+    st.error("🔴 NATIONAL OUTBREAK WARNING")
+elif regional_data["Predicted_Cases"].max() >= 20000:
+    st.warning("🟠 HIGH RISK ALERT")
+elif regional_data["Predicted_Cases"].max() >= 10000:
+    st.warning("🟡 ELEVATED RISK")
+else:
+    st.success("🟢 LOW RISK")
 st.divider()
 
 st.subheader("🔥 Top 5 High-Risk Regions")
