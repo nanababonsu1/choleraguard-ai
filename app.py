@@ -651,6 +651,28 @@ st.markdown(f"""
 
 Cholera risk is currently being influenced by rainfall intensity, sanitation coverage, water access, and population density. Public health teams should prioritize surveillance, WASH interventions, water-quality testing, community education, and rapid response readiness in high-risk areas.
 """)
+st.subheader("🌍 WHO Outbreak Threshold Assessment")
+
+if prediction >= 100:
+    st.error("🔴 WHO Assessment: Predicted cases exceed the national outbreak threshold. Immediate emergency response is recommended.")
+elif prediction >= 50:
+    st.warning("🟠 WHO Assessment: High transmission risk. Intensify surveillance and preparedness.")
+elif prediction >= 20:
+    st.warning("🟡 WHO Assessment: Increased alert level. Strengthen monitoring and WASH interventions.")
+else:
+    st.success("🟢 WHO Assessment: Routine surveillance. No evidence of widespread transmission.")
+    st.subheader("🇬🇭 National Risk Classification")
+
+if prediction >= 100:
+    risk_level = "SEVERE"
+elif prediction >= 50:
+    risk_level = "HIGH"
+elif prediction >= 20:
+    risk_level = "MODERATE"
+else:
+    risk_level = "LOW"
+
+st.metric("Current National Risk", risk_level)
 forecast_df = pd.DataFrame({
     "Month": future_months,
     "Forecasted Cases": forecast_cases
