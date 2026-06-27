@@ -534,7 +534,28 @@ fig_district_map.update_layout(
     mapbox_style="open-street-map",
     margin={"r": 0, "t": 0, "l": 0, "b": 0}
 )
+st.subheader("📍 Interactive District Drill-Down")
 
+selected_district = st.selectbox(
+    "Select a district to explore:",
+    district_data["District"]
+)
+
+district_info = district_data[district_data["District"] == selected_district].iloc[0]
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric("Predicted Cases", int(district_info["Predicted_Cases"]))
+    st.metric("Rainfall (mm)", int(district_info["Rainfall_mm"]))
+
+with col2:
+    st.metric("Water Access (%)", int(district_info["Water_Access"]))
+    st.metric("Sanitation (%)", int(district_info["Sanitation"]))
+
+st.progress(min(int(district_info["Risk_Score"]), 100))
+
+st.caption(f"Risk Score: {district_info['Risk_Score']:.1f}")
 st.plotly_chart(fig_district_map, use_container_width=True)
 st.subheader("📥 Export Surveillance Data")
 
