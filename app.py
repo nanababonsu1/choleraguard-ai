@@ -526,16 +526,16 @@ district_info = district_data[district_data["District"] == selected_district].il
 col1, col2 = st.columns(2)
 
 with col1:
-    st.metric("Predicted Cases", int(district_info["Predicted_Cases"]))
-    st.metric("Rainfall (mm)", int(district_info["Rainfall_mm"]))
+    st.metric("District", district_info["District"])
+    st.metric("Region", district_info["Region"])
 
 with col2:
-    st.metric("Water Access (%)", int(district_info["Water_Access"]))
-    st.metric("Sanitation (%)", int(district_info["Sanitation"]))
+    st.metric("Risk Score", round(district_info["Risk_Score"], 1))
+    st.metric("Risk Level", "High" if district_info["Risk_Score"] >= 30000 else "Moderate")
 
-st.progress(min(int(district_info["Risk_Score"]), 100))
+st.progress(min(int(district_info["Risk_Score"] / 40000 * 100), 100))
 
-st.caption(f"Risk Score: {district_info['Risk_Score']:.1f}")
+st.caption(f"District risk score: {district_info['Risk_Score']:.1f}")
 st.subheader("🗺️ District-Level Cholera Risk Map")
 
 fig_district_map = px.scatter_mapbox(
