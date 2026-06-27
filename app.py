@@ -514,26 +514,6 @@ st.dataframe(
     top_districts[["District", "Region", "Risk_Score"]],
     use_container_width=True
 )
-st.subheader("🗺️ District-Level Cholera Risk Map")
-
-fig_district_map = px.scatter_mapbox(
-    district_data,
-    lat="Latitude",
-    lon="Longitude",
-    hover_name="District",
-    hover_data=["Region", "Risk_Score"],
-    size="Risk_Score",
-    color="Risk_Score",
-    color_continuous_scale="Reds",
-    zoom=5,
-    center={"lat": 7.9465, "lon": -1.0232},
-    height=600
-)
-
-fig_district_map.update_layout(
-    mapbox_style="open-street-map",
-    margin={"r": 0, "t": 0, "l": 0, "b": 0}
-)
 st.subheader("📍 Interactive District Drill-Down")
 
 selected_district = st.selectbox(
@@ -556,6 +536,27 @@ with col2:
 st.progress(min(int(district_info["Risk_Score"]), 100))
 
 st.caption(f"Risk Score: {district_info['Risk_Score']:.1f}")
+st.subheader("🗺️ District-Level Cholera Risk Map")
+
+fig_district_map = px.scatter_mapbox(
+    district_data,
+    lat="Latitude",
+    lon="Longitude",
+    hover_name="District",
+    hover_data=["Region", "Risk_Score"],
+    size="Risk_Score",
+    color="Risk_Score",
+    color_continuous_scale="Reds",
+    zoom=5,
+    center={"lat": 7.9465, "lon": -1.0232},
+    height=600
+)
+
+fig_district_map.update_layout(
+    mapbox_style="open-street-map",
+    margin={"r": 0, "t": 0, "l": 0, "b": 0}
+)
+
 st.plotly_chart(fig_district_map, use_container_width=True)
 st.subheader("📥 Export Surveillance Data")
 
