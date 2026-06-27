@@ -593,7 +593,25 @@ forecast_cases = [
     int(current_prediction * 1.10),
     int(current_prediction * 1.15)
 ]
+st.subheader("📊 Forecast Confidence")
 
+if prediction >= 100:
+    confidence = "High Confidence"
+    confidence_score = 90
+elif prediction >= 50:
+    confidence = "Moderate Confidence"
+    confidence_score = 80
+else:
+    confidence = "Exploratory Forecast"
+    confidence_score = 70
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.metric("Forecast Confidence", f"{confidence_score}%")
+
+with col2:
+    st.metric("Forecast Status", confidence)
 forecast_df = pd.DataFrame({
     "Month": future_months,
     "Forecasted Cases": forecast_cases
