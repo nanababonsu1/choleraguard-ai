@@ -536,6 +536,20 @@ with col2:
 st.progress(min(int(district_info["Risk_Score"] / 40000 * 100), 100))
 
 st.caption(f"District risk score: {district_info['Risk_Score']:.1f}")
+st.subheader("🌧 Rainfall Intelligence Panel")
+
+st.info(
+    f"Current rainfall input for this simulation is {rainfall_input} mm under the '{rainfall_scenario}' scenario."
+)
+
+if rainfall_input >= 250:
+    st.error("Extreme rainfall/flooding conditions detected. Cholera transmission risk may increase significantly.")
+elif rainfall_input >= 180:
+    st.warning("Heavy rainfall conditions detected. Increase surveillance and water-quality monitoring.")
+elif rainfall_input >= 100:
+    st.warning("Moderate rainfall conditions detected. Continue close monitoring.")
+else:
+    st.success("Low rainfall conditions detected. Routine monitoring recommended.")
 st.subheader("🗺️ District-Level Cholera Risk Map")
 
 fig_district_map = px.scatter_mapbox(
