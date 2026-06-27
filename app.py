@@ -612,6 +612,23 @@ with col1:
 
 with col2:
     st.metric("Forecast Status", confidence)
+    st.subheader("🧠 AI Outbreak Probability Meter")
+
+outbreak_probability = min(
+    100,
+    int((prediction / 100) * 100)
+)
+
+st.progress(outbreak_probability / 100)
+
+if outbreak_probability >= 80:
+    st.error(f"🔴 Outbreak Probability: {outbreak_probability}% — Very High")
+elif outbreak_probability >= 60:
+    st.warning(f"🟠 Outbreak Probability: {outbreak_probability}% — High")
+elif outbreak_probability >= 40:
+    st.warning(f"🟡 Outbreak Probability: {outbreak_probability}% — Moderate")
+else:
+    st.success(f"🟢 Outbreak Probability: {outbreak_probability}% — Low")
 forecast_df = pd.DataFrame({
     "Month": future_months,
     "Forecasted Cases": forecast_cases
