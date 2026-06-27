@@ -629,6 +629,28 @@ elif outbreak_probability >= 40:
     st.warning(f"🟡 Outbreak Probability: {outbreak_probability}% — Moderate")
 else:
     st.success(f"🟢 Outbreak Probability: {outbreak_probability}% — Low")
+    st.subheader("📝 AI Situation Report")
+
+highest_region = regional_data.sort_values(
+    "Predicted_Cases",
+    ascending=False
+).iloc[0]["Region"]
+
+st.markdown(f"""
+**Executive Summary**
+
+- **Selected Region:** {region}
+- **Predicted Cholera Cases:** {int(prediction):,}
+- **Highest-Risk Region Nationally:** {highest_region}
+- **Rainfall Scenario:** {rainfall_scenario}
+- **Model Rainfall Input:** {rainfall_input} mm
+- **Outbreak Probability:** {outbreak_probability}%
+- **Forecast Confidence:** {confidence_score}% ({confidence})
+
+**Recommended Public Health Interpretation**
+
+Cholera risk is currently being influenced by rainfall intensity, sanitation coverage, water access, and population density. Public health teams should prioritize surveillance, WASH interventions, water-quality testing, community education, and rapid response readiness in high-risk areas.
+""")
 forecast_df = pd.DataFrame({
     "Month": future_months,
     "Forecasted Cases": forecast_cases
