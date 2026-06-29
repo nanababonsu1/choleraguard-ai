@@ -709,6 +709,20 @@ else:
     risk_level = "LOW"
 
 st.metric("Current National Risk", risk_level)
+st.subheader("📈 Forecast Trend Interpretation")
+
+forecast_change = forecast_cases[-1] - forecast_cases[0]
+
+if forecast_change > 0:
+    st.warning(
+        f"Projected cholera burden is increasing over the next 3 months by approximately {int(forecast_change)} cases."
+    )
+elif forecast_change < 0:
+    st.success(
+        f"Projected cholera burden is decreasing over the next 3 months by approximately {abs(int(forecast_change))} cases."
+    )
+else:
+    st.info("Projected cholera burden is stable over the next 3 months.")
 forecast_df = pd.DataFrame({
     "Month": future_months,
     "Forecasted Cases": forecast_cases
