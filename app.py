@@ -310,7 +310,7 @@ st.subheader("🎯 Cholera Risk Gauge")
 
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
-    value=gauge_value,
+    
     title={"text": "Outbreak Risk Score"},
     gauge={
         "axis": {"range": [0, 120]},
