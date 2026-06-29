@@ -245,13 +245,14 @@ Powered by AI + Public Health Intelligence
 region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
 selected = regional_data[regional_data["Region"] == region].iloc[0]
-
+st.sidebar.markdown("---")
 rainfall = st.sidebar.slider(
     "Rainfall (mm)",
     0,
     300,
     int(selected["Rainfall_mm"])
 )
+st.sidebar.markdown("---")
 rainfall_scenario = st.sidebar.selectbox(
     "Rainfall Scenario",
     [
@@ -275,7 +276,9 @@ else:
     st.sidebar.info(
     f"🌧 Active Scenario: {rainfall_scenario}\n\nRainfall Input: {rainfall_input} mm"
 )
+    st.sidebar.markdown("---")
 water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
+st.sidebar.markdown("---")
 sanitation = st.sidebar.slider("Sanitation Coverage (%)", 0, 100, int(selected["Sanitation"]))
 population_density = st.sidebar.slider("Population Density", 100, 6000, int(selected["Population_Density"]))
 
@@ -285,7 +288,8 @@ input_df = pd.DataFrame({
     "Sanitation": [sanitation],
     "Population_Density": [population_density]
 })
-
+st.sidebar.markdown("---")
+water_access = st.sidebar.slider(...)
 prediction = model.predict(input_df)[0]
 st.write("Rainfall Used:", rainfall_input)
 st.write("Water Access Used:", water_access)
