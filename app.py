@@ -303,7 +303,7 @@ population_density = st.sidebar.slider(
 col1, col2, col3, col4 = st.columns(4)
 
 col1.metric("Selected Region", region)
-col2.metric("Predicted Cases", round(prediction, 1))
+
 col3.metric("Risk Level", risk)
 col4.metric("Model Type", "Random Forest")
 st.subheader("🎯 Cholera Risk Gauge")
