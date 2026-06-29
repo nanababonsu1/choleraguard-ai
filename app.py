@@ -1,4 +1,4 @@
-import streamlit as st
+simport streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -225,7 +225,11 @@ def risk_level(cases):
 regional_data["Risk_Level"] = regional_data["Predicted_Cases"].apply(risk_level)
 regional_data["WHO_Status"] = regional_data["Predicted_Cases"].apply(risk_level)
 
-st.sidebar.header("Run a Regional Prediction")
+st.sidebar.markdown("""
+## ⚙️ Simulation Controls
+
+Adjust the variables below to simulate cholera outbreak risk in Ghana.
+""")
 
 region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
@@ -246,6 +250,9 @@ rainfall_scenario = st.sidebar.selectbox(
         "Heavy Rainfall Scenario",
         "Extreme Flooding Scenario",
     ]
+)
+st.sidebar.info(
+    f"🌧 Active Scenario: {rainfall_scenario}\n\nRainfall Input: {rainfall_input} mm"
 )
 if rainfall_scenario == "Low Rainfall Scenario":
     rainfall_input = 50
