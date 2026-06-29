@@ -12,7 +12,14 @@ st.set_page_config(
     page_icon="🦠",
     layout="wide"
 )
+st.markdown("""
+# 🧠 CholeraGuard AI  
+### Ghana National Cholera Surveillance & Outbreak Prediction Dashboard
 
+**AI-powered early warning system for cholera risk monitoring, rainfall scenario analysis, district-level intelligence, and public health response planning.**
+""")
+
+st.divider()
 st.title("🇬🇭 CholeraGuard AI: Ghana National Cholera Surveillance Dashboard")
 st.subheader("AI-Powered Cholera Early Warning and Outbreak Prediction System for all 16 Regions of Ghana")
 
