@@ -229,30 +229,20 @@ st.sidebar.markdown("---")
 st.sidebar.title("🧠 CholeraGuard AI")
 st.sidebar.caption("National Cholera Surveillance Dashboard")
 st.sidebar.markdown("### ⚙️ Prediction Controls")
-st.sidebar.markdown("---")
 
-st.sidebar.info("""
-**AI Model**
-
-Version: 2.0
-
-Country: Ghana 🇬🇭
-
-Forecast Horizon: 3 Months
-
-Powered by AI + Public Health Intelligence
-""")
 region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
 selected = regional_data[regional_data["Region"] == region].iloc[0]
+
 st.sidebar.markdown("---")
+
 rainfall = st.sidebar.slider(
     "Rainfall (mm)",
     0,
     300,
     int(selected["Rainfall_mm"])
 )
-st.sidebar.markdown("---")
+
 rainfall_scenario = st.sidebar.selectbox(
     "Rainfall Scenario",
     [
@@ -260,9 +250,10 @@ rainfall_scenario = st.sidebar.selectbox(
         "Low Rainfall Scenario",
         "Moderate Rainfall Scenario",
         "Heavy Rainfall Scenario",
-        "Extreme Flooding Scenario",
+        "Extreme Flooding Scenario"
     ]
 )
+
 if rainfall_scenario == "Low Rainfall Scenario":
     rainfall_input = 50
 elif rainfall_scenario == "Moderate Rainfall Scenario":
@@ -273,21 +264,8 @@ elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
 else:
     rainfall_input = rainfall
-    st.sidebar.info(
-    f"🌧 Active Scenario: {rainfall_scenario}\n\nRainfall Input: {rainfall_input} mm"
-)
-st.sidebar.markdown("---")
-water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
-st.sidebar.markdown("---")
-sanitation = st.sidebar.slider("Sanitation Coverage (%)", 0, 100, int(selected["Sanitation"]))
-population_density = st.sidebar.slider("Population Density", 100, 6000, int(selected["Population_Density"]))
 
-input_df = pd.DataFrame({
-    "Rainfall_mm": [rainfall_input],
-    "Water_Access": [water_access],
-    "Sanitation": [sanitation],
-    "Population_Density": [population_density]
-})
+st.sidebar.info(f"🌧 Rainfall Used: {rainfall_input} mm")
 
 st.sidebar.markdown("---")
 
@@ -298,6 +276,8 @@ water_access = st.sidebar.slider(
     int(selected["Water_Access"])
 )
 
+st.sidebar.markdown("---")
+
 sanitation = st.sidebar.slider(
     "Sanitation Coverage (%)",
     0,
@@ -305,18 +285,15 @@ sanitation = st.sidebar.slider(
     int(selected["Sanitation"])
 )
 
+st.sidebar.markdown("---")
+
 population_density = st.sidebar.slider(
     "Population Density",
     100,
     6000,
     int(selected["Population_Density"])
 )
-prediction = model.predict(input_df)[0]
-st.write("Rainfall Used:", rainfall_input)
-st.write("Water Access Used:", water_access)
-st.write("Sanitation Used:", sanitation)
-st.write("Population Density Used:", population_density)
-risk = risk_level(prediction)
+
 gauge_value = min(prediction, 40000)
 
 # ---------------------------
