@@ -229,7 +229,19 @@ st.sidebar.markdown("---")
 st.sidebar.title("🧠 CholeraGuard AI")
 st.sidebar.caption("National Cholera Surveillance Dashboard")
 st.sidebar.markdown("### ⚙️ Prediction Controls")
+st.sidebar.markdown("---")
 
+st.sidebar.info("""
+**AI Model**
+
+Version: 2.0
+
+Country: Ghana 🇬🇭
+
+Forecast Horizon: 3 Months
+
+Powered by AI + Public Health Intelligence
+""")
 region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
 selected = regional_data[regional_data["Region"] == region].iloc[0]
