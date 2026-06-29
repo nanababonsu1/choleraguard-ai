@@ -278,7 +278,7 @@ else:
 )
     st.sidebar.markdown("---")
 water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
-st.sidebar.markdown("---")
+    st.sidebar.markdown("---")
 sanitation = st.sidebar.slider("Sanitation Coverage (%)", 0, 100, int(selected["Sanitation"]))
 population_density = st.sidebar.slider("Population Density", 100, 6000, int(selected["Population_Density"]))
 
@@ -288,8 +288,29 @@ input_df = pd.DataFrame({
     "Sanitation": [sanitation],
     "Population_Density": [population_density]
 })
+
 st.sidebar.markdown("---")
-water_access = st.sidebar.slider(...)
+
+water_access = st.sidebar.slider(
+    "Water Access (%)",
+    0,
+    100,
+    int(selected["Water_Access"])
+)
+
+sanitation = st.sidebar.slider(
+    "Sanitation Coverage (%)",
+    0,
+    100,
+    int(selected["Sanitation"])
+)
+
+population_density = st.sidebar.slider(
+    "Population Density",
+    100,
+    6000,
+    int(selected["Population_Density"])
+)
 prediction = model.predict(input_df)[0]
 st.write("Rainfall Used:", rainfall_input)
 st.write("Water Access Used:", water_access)
