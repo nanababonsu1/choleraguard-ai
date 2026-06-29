@@ -276,9 +276,9 @@ else:
     st.sidebar.info(
     f"🌧 Active Scenario: {rainfall_scenario}\n\nRainfall Input: {rainfall_input} mm"
 )
-    st.sidebar.markdown("---")
+st.sidebar.markdown("---")
 water_access = st.sidebar.slider("Water Access (%)", 0, 100, int(selected["Water_Access"]))
-    st.sidebar.markdown("---")
+st.sidebar.markdown("---")
 sanitation = st.sidebar.slider("Sanitation Coverage (%)", 0, 100, int(selected["Sanitation"]))
 population_density = st.sidebar.slider("Population Density", 100, 6000, int(selected["Population_Density"]))
 
