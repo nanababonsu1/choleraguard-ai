@@ -225,11 +225,10 @@ def risk_level(cases):
 regional_data["Risk_Level"] = regional_data["Predicted_Cases"].apply(risk_level)
 regional_data["WHO_Status"] = regional_data["Predicted_Cases"].apply(risk_level)
 
-st.sidebar.markdown("""
-## ⚙️ Simulation Controls
-
-Adjust the variables below to simulate cholera outbreak risk in Ghana.
-""")
+st.sidebar.markdown("---")
+st.sidebar.title("🧠 CholeraGuard AI")
+st.sidebar.caption("National Cholera Surveillance Dashboard")
+st.sidebar.markdown("### ⚙️ Prediction Controls")
 
 region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
