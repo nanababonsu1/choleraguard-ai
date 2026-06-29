@@ -709,6 +709,38 @@ else:
     risk_level = "LOW"
 
 st.metric("Current National Risk", risk_level)
+st.subheader("🛰 AI Situation Report")
+
+st.markdown(f"""
+### Executive Situation Brief
+
+**Date:** {pd.Timestamp.today().strftime("%d %B %Y")}
+
+**Country:** Ghana
+
+**AI Surveillance Summary**
+
+The AI surveillance engine predicts approximately **{int(prediction)} cholera cases** based on current environmental and public health indicators.
+
+### Key Findings
+
+- Highest-risk region: **{highest_region}**
+- National Risk Level: **{risk_level}**
+- Rainfall Scenario: **{rainfall_scenario}**
+- Estimated Rainfall: **{rainfall_input} mm**
+- Water Access: **{water_access}%**
+- Sanitation Coverage: **{sanitation}%**
+- Population Density: **{population_density:,} persons/km²**
+
+### AI Assessment
+
+The current environmental conditions suggest that cholera transmission may {'increase' if prediction >= 50 else 'remain stable'} over the coming weeks.
+
+Priority should be given to intensified surveillance, rapid response preparedness, improved WASH interventions, and continuous monitoring of rainfall patterns.
+
+---
+**Generated automatically by CholeraGuard AI**
+""")
 st.subheader("📈 Forecast Trend Interpretation")
 
 forecast_change = forecast_cases[-1] - forecast_cases[0]
