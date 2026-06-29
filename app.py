@@ -294,7 +294,7 @@ population_density = st.sidebar.slider(
     int(selected["Population_Density"])
 )
 
-gauge_value = min(prediction, 40000)
+
 
 # ---------------------------
 # DASHBOARD
