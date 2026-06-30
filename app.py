@@ -301,7 +301,7 @@ input_df = pd.DataFrame({
 })
 
 prediction = model.predict(input_df)[0]
-gauge_value = min(prediction, 40000)
+gauge_value = prediction
 
 
 # ---------------------------
