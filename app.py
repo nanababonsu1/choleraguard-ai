@@ -293,7 +293,15 @@ population_density = st.sidebar.slider(
     6000,
     int(selected["Population_Density"])
 )
+input_df = pd.DataFrame({
+    "Rainfall_mm": [rainfall_input],
+    "Water_Access": [water_access],
+    "Sanitation": [sanitation],
+    "Population_Density": [population_density]
+})
 
+prediction = model.predict(input_df)[0]
+gauge_value = min(prediction, 40000)
 
 
 # ---------------------------
