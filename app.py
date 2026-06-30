@@ -613,6 +613,9 @@ fig_district_map.update_layout(
 )
 
 st.plotly_chart(fig_district_map, use_container_width=True)
+st.caption(
+    "Note: The district map shows district-level baseline risk scores. The gauge and prediction metrics update based on the selected regional simulation inputs."
+)
 st.subheader("📥 Export Surveillance Data")
 
 csv = regional_data.to_csv(index=False)
