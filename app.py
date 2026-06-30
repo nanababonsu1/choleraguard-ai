@@ -302,7 +302,13 @@ input_df = pd.DataFrame({
 
 prediction = model.predict(input_df)[0]
 gauge_value = prediction
+regional_data.loc[
+    regional_data["Region"] == region,
+    "Predicted_Cases"
+] = prediction
 
+regional_data["Risk_Level"] = regional_data["Predicted_Cases"].apply(risk_level)
+regional_data["WHO_Status"] = regional_data["Predicted_Cases"].apply(risk_level)
 
 # ---------------------------
 # DASHBOARD
