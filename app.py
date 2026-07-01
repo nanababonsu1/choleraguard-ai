@@ -298,6 +298,21 @@ st.sidebar.markdown("---")
 st.sidebar.info("""
 ### 🤖 AI Model Information
 
+**Version:** 2.0
+
+**Country:** Ghana 🇬🇭
+
+**Forecast Horizon:** 3 Months
+
+**AI Engine:** Random Forest Prediction Model
+
+**Purpose:** National Cholera Early Warning & Decision Support System
+""")
+st.sidebar.markdown("---")
+
+st.sidebar.info("""
+### 🤖 AI Model Information
+
 **Version:** 2.0  
 **Country:** Ghana 🇬🇭  
 **Forecast Horizon:** 3 Months  
