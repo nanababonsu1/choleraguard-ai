@@ -611,31 +611,6 @@ with col4:
         "Total Regions",
         len(regional_data)
     )
-
-st.subheader("📊 National Summary Statistics")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.metric(
-        "Total Predicted Cases",
-        int(regional_data["Predicted_Cases"].sum())
-    )
-
-with col2:
-    highest_region = regional_data.sort_values(
-        "Predicted_Cases",
-        ascending=False
-    ).iloc[0]["Region"]
-
-    st.metric("Highest Risk Region", highest_region)
-
-with col3:
-    st.metric(
-        "Average Regional Risk",
-        round(regional_data["Predicted_Cases"].mean(), 1)
-    )
-
 st.subheader("🚨 National Cholera Alert Status")
 
 if regional_data["Predicted_Cases"].max() >= 30000:
