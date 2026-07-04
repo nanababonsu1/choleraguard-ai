@@ -358,16 +358,7 @@ st.sidebar.info("""
 
 **Purpose:** National Cholera Early Warning & Decision Support System
 """)
-st.sidebar.markdown("---")
 
-st.sidebar.info("""
-### 🤖 AI Model Information
-
-**Version:** 2.0  
-**Country:** Ghana 🇬🇭  
-**Forecast Horizon:** 3 Months  
-**Purpose:** Cholera Early Warning & Public Health Decision Support
-""")
 input_df = pd.DataFrame({
     "Rainfall_mm": [rainfall_input],
     "Water_Access": [water_access],
