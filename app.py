@@ -551,7 +551,11 @@ fig_map = px.scatter_mapbox(
     lat="Latitude",
     lon="Longitude",
     hover_name="Region",
-    hover_data=["Predicted_Cases"],
+    hover_data=[
+    "Predicted_Cases",
+    "Risk_Level",
+    "WHO_Status"
+],
     size="Predicted_Cases",
     color="Predicted_Cases",
     symbol="Risk_Level",
