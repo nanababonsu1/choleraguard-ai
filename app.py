@@ -403,7 +403,16 @@ regional_data["WHO_Status"] = regional_data["Predicted_Cases"].apply(risk_level)
 # ---------------------------
 
 col1, col2, col3, col4 = st.columns(4)
+st.markdown("### 🚨 WHO Outbreak Alert")
 
+if alert_level.startswith("🔴"):
+    st.error(f"**{alert_level}**\n\n{alert_message}")
+elif alert_level.startswith("🟠"):
+    st.warning(f"**{alert_level}**\n\n{alert_message}")
+elif alert_level.startswith("🟡"):
+    st.info(f"**{alert_level}**\n\n{alert_message}")
+else:
+    st.success(f"**{alert_level}**\n\n{alert_message}")
 col1.metric("Selected Region", region)
 
 
