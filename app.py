@@ -413,6 +413,37 @@ elif alert_level.startswith("🟡"):
     st.info(f"**{alert_level}**\n\n{alert_message}")
 else:
     st.success(f"**{alert_level}**\n\n{alert_message}")
+st.markdown("### 🧭 Recommended Public Health Actions")
+
+if alert_level.startswith("🔴"):
+    st.error("""
+    - Activate emergency cholera response teams.
+    - Deploy rapid response teams to affected communities.
+    - Pre-position ORS, IV fluids, antibiotics, and cholera treatment supplies.
+    - Intensify water testing, chlorination, and sanitation interventions.
+    - Launch urgent public risk communication.
+    """)
+elif alert_level.startswith("🟠"):
+    st.warning("""
+    - Intensify surveillance in high-risk areas.
+    - Prepare district response teams for rapid deployment.
+    - Increase WASH education and water-quality monitoring.
+    - Monitor rainfall, flooding, and sanitation conditions closely.
+    """)
+elif alert_level.startswith("🟡"):
+    st.info("""
+    - Strengthen routine cholera surveillance.
+    - Begin targeted community education.
+    - Monitor rainfall and sanitation trends.
+    - Prepare response supplies for possible escalation.
+    """)
+else:
+    st.success("""
+    - Continue routine surveillance.
+    - Maintain community WASH education.
+    - Keep regional reporting systems active.
+    - Monitor rainfall and sanitation trends.
+    """)    
 col1.metric("Selected Region", region)
 
 
