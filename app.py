@@ -22,6 +22,24 @@ def get_live_weather(city="Accra"):
 
     except Exception:
         return None, None, None
+region_weather_city = {
+    "Greater Accra": "Accra",
+    "Ashanti": "Kumasi",
+    "Central": "Cape Coast",
+    "Eastern": "Koforidua",
+    "Western": "Takoradi",
+    "Western North": "Sefwi Wiawso",
+    "Volta": "Ho",
+    "Oti": "Dambai",
+    "Northern": "Tamale",
+    "Savannah": "Damongo",
+    "North East": "Nalerigu",
+    "Upper East": "Bolgatanga",
+    "Upper West": "Wa",
+    "Bono": "Sunyani",
+    "Bono East": "Techiman",
+    "Ahafo": "Goaso"
+}
 st.set_page_config(
     page_title="CholeraGuard AI",
     page_icon="🦠",
