@@ -297,7 +297,7 @@ elif rainfall_scenario == "Heavy Rainfall Scenario":
 elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
     
-elif rainfall_scenario == "Live Weather":
+elif rainfall_scenario.startswith == "Live Weather":
     city = region_weather_city.get(region, "Accra")
     rainfall_mm, temperature_c, humidity = get_live_weather(city)
 
