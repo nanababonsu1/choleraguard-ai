@@ -554,6 +554,7 @@ fig_map = px.scatter_mapbox(
     hover_data=["Predicted_Cases"],
     size="Predicted_Cases",
     color="Predicted_Cases",
+    symbol="Risk_Level",
     color_continuous_scale="Reds",
     zoom=5,
     center={"lat": 7.9465, "lon": -1.0232},
