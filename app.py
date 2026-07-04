@@ -278,7 +278,8 @@ elif rainfall_scenario == "Heavy Rainfall Scenario":
     rainfall_input = 220
 elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
-    elif rainfall_scenario == "Live Weather - Accra":
+    
+elif rainfall_scenario == "Live Weather - Accra":
     rainfall_mm, temperature_c, humidity = get_live_weather("Accra")
 
     if rainfall_mm is not None:
