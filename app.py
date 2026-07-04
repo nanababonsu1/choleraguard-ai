@@ -278,6 +278,21 @@ elif rainfall_scenario == "Heavy Rainfall Scenario":
     rainfall_input = 220
 elif rainfall_scenario == "Extreme Flooding Scenario":
     rainfall_input = 300
+    elif rainfall_scenario == "Live Weather - Accra":
+    rainfall_mm, temperature_c, humidity = get_live_weather("Accra")
+
+    if rainfall_mm is not None:
+        rainfall_input = rainfall_mm
+
+        st.sidebar.success(
+            f"🌦 Live Weather\n\n"
+            f"Rainfall: {rainfall_mm} mm\n"
+            f"Temperature: {temperature_c}°C\n"
+            f"Humidity: {humidity}%"
+        )
+    else:
+        st.sidebar.error("Unable to retrieve live weather data.")
+        rainfall_input = rainfall
 else:
     rainfall_input = rainfall
 
