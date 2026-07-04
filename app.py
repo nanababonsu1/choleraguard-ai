@@ -265,16 +265,16 @@ st.sidebar.caption("National Cholera Surveillance Dashboard")
 st.sidebar.markdown("### ⚙️ Prediction Controls")
 st.sidebar.markdown("---")
 
+region = st.sidebar.selectbox("Select Region", regional_data["Region"])
+selected = regional_data[regional_data["Region"] == region].iloc[0]
+
+
 rainfall = st.sidebar.slider(
     "Rainfall (mm)",
     0,
     300,
     int(selected["Rainfall_mm"])
 )
-region = st.sidebar.selectbox("Select Region", regional_data["Region"])
-
-selected = regional_data[regional_data["Region"] == region].iloc[0]
-
 rainfall_scenario = st.sidebar.selectbox(
     "Rainfall Scenario",
     [
