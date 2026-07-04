@@ -7,7 +7,21 @@ import plotly.graph_objects as go
 import requests
 from sklearn.ensemble import RandomForestRegressor
 from fpdf import FPDF
+def get_live_weather(city="Accra"):
+    try:
+        url = f"https://wttr.in/{city}?format=j1"
+        response = requests.get(url, timeout=10)
+        data = response.json()
 
+        current = data["current_condition"][0]
+        rainfall_mm = float(current.get("precipMM", 0))
+        temperature_c = float(current.get("temp_C", 0))
+        humidity = float(current.get("humidity", 0))
+
+        return rainfall_mm, temperature_c, humidity
+
+    except Exception:
+        return None, None, None
 st.set_page_config(
     page_title="CholeraGuard AI",
     page_icon="🦠",
