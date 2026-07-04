@@ -570,6 +570,19 @@ fig_map.update_layout(
 )
 
 st.plotly_chart(fig_map, use_container_width=True)
+st.markdown("### 🇬🇭 National Summary Statistics")
+
+total_predicted_cases = int(regional_data["Predicted_Cases"].sum())
+high_risk_regions = len(regional_data[regional_data["Predicted_Cases"] >= 50])
+outbreak_regions = len(regional_data[regional_data["Predicted_Cases"] >= 100])
+average_risk = round(regional_data["Predicted_Cases"].mean(), 1)
+
+sum_col1, sum_col2, sum_col3, sum_col4 = st.columns(4)
+
+sum_col1.metric("Total Predicted Cases", total_predicted_cases)
+sum_col2.metric("High-Risk Regions", high_risk_regions)
+sum_col3.metric("Outbreak-Level Regions", outbreak_regions)
+sum_col4.metric("Average Regional Risk", average_risk)
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
