@@ -265,7 +265,7 @@ rainfall_scenario = st.sidebar.selectbox(
         "Low Rainfall Scenario",
         "Moderate Rainfall Scenario",
         "Heavy Rainfall Scenario",
-        "Extreme Flooding Scenario"
+        "Extreme Flooding Scenario",
         "Live Weather - Accra"
     ]
 )
