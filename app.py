@@ -268,15 +268,6 @@ region = st.sidebar.selectbox("Select Region", regional_data["Region"])
 
 selected = regional_data[regional_data["Region"] == region].iloc[0]
 
-st.sidebar.markdown("---")
-
-rainfall = st.sidebar.slider(
-    "Rainfall (mm)",
-    0,
-    300,
-    int(selected["Rainfall_mm"])
-)
-
 rainfall_scenario = st.sidebar.selectbox(
     "Rainfall Scenario",
     [
