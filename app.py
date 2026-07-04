@@ -304,8 +304,8 @@ elif rainfall_scenario == "Live Weather":
     if rainfall_mm is not None:
         rainfall_input = rainfall_mm
 
-        st.sidebar.success(
-            f"🌦 Live Weather\n\n"
+st.sidebar.success(
+    f"🌦️ Live Weather ({city})\n\n"
             f"Rainfall: {rainfall_mm} mm\n"
             f"Temperature: {temperature_c}°C\n"
             f"Humidity: {humidity}%"
