@@ -377,6 +377,18 @@ input_df = pd.DataFrame({
 })
 
 prediction = model.predict(input_df)[0]
+if prediction >= 100:
+    alert_level = "🔴 RED ALERT"
+    alert_message = "Emergency outbreak response required."
+elif prediction >= 50:
+    alert_level = "🟠 ORANGE ALERT"
+    alert_message = "High-risk conditions detected. Intensify surveillance."
+elif prediction >= 20:
+    alert_level = "🟡 YELLOW ALERT"
+    alert_message = "Moderate risk. Strengthen monitoring and preparedness."
+else:
+    alert_level = "🟢 GREEN STATUS"
+    alert_message = "Low risk. Continue routine surveillance."
 gauge_value = prediction
 regional_data.loc[
     regional_data["Region"] == region,
